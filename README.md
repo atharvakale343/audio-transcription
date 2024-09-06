@@ -14,3 +14,17 @@ pip install pipenv
 ```
 pipenv install
 ```
+
+### Starting the server
+
+```
+python -m audio_transcription.backend.server
+```
+
+### Client example
+
+```
+python client_example.py
+```
+
+### Command line tool
