@@ -28,3 +28,13 @@ python client_example.py
 ```
 
 ### Command line tool
+
+Transcribe a single file
+```
+python cmd_interface.py --output_directory ./out --audio_file audio.mp3
+```
+
+Transcribe all audio files in a directory
+```
+python cmd_interface.py --output_directory ./out --audio_directory ./input_dir
+```
