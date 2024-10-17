@@ -40,12 +40,12 @@ def main():
 
     model = AudioTranscriptionModel()
     if audio_file:
-        model.transcribe(audio_file, output_directory)
+        model.transcribe(audio_file, str(output_directory))
         print(
             f"Transcription for {audio_file} saved to {output_directory / Path(audio_file).name.split('.')[0]}.txt"
         )
     else:
-        model.transcribe_files_in_directory(audio_directory, output_directory)
+        model.transcribe_files_in_directory(audio_directory, str(output_directory))
         print(
             f"Transcriptions for files in {audio_directory} saved to {output_directory}"
         )
