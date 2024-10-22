@@ -34,7 +34,7 @@ class AudioTranscriptionModel:
             )
         return res
 
-    def transcribe_batch(self, audio_paths: list[str]) -> list[str]:
+    def transcribe_batch(self, audio_paths: list[str]) -> list[dict]:
         return [
             {"file_path": str(audio_path), "result": self.transcribe(audio_path)}
             for audio_path in audio_paths

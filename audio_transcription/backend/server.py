@@ -1,23 +1,22 @@
 from flask_ml.flask_ml_server import MLServer
-from flask_ml.flask_ml_server.constants import DataTypes
-from flask_ml.flask_ml_server.models import (BatchTextResult, TextInput,
-                                             TextResult)
+from flask_ml.flask_ml_server.models import ResponseBody
+from flask_ml.flask_ml_server.templates import FileML
 
 from ..ml.model import AudioTranscriptionModel
 
 model = AudioTranscriptionModel()
 server = MLServer(__name__)
+file_ml = FileML()
 
 
-@server.route("/transcribe", input_type=DataTypes.AUDIO)
-def transcribe(inputs: list[TextInput], parameters: dict) -> BatchTextResult:
+@server.route("/transcribe", task_schema_func=file_ml.task_schema_func)
+def transcribe(inputs: file_ml.input_type, parameters: file_ml.parameter_type) -> ResponseBody:
     print("Inputs:", inputs)
     print("Parameters:", parameters)
-    files = [e.file_path for e in inputs]
+    files = [e.path for e in inputs["file_inputs"].files]
     results = model.transcribe_batch(files)
-    results = [TextResult(id=e["file_path"], result=e["result"]) for e in results]
-    results = BatchTextResult(results=results)
-    return results
+    results = {r["file_path"]: r["result"] for r in results}
+    return file_ml.generate_text_response(results)
 
 
 server.run()
