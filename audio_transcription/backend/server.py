@@ -6,7 +6,8 @@ from ..ml.model import AudioTranscriptionModel
 
 model = AudioTranscriptionModel()
 server = MLServer(__name__)
-file_ml = FileML()
+example_parameters = {'example_parameter': 'example_value', 'example_parameter2': 0.5, 'example_parameter3': 5}
+file_ml = FileML(example_parameters)
 
 
 @server.route("/transcribe", task_schema_func=file_ml.task_schema_func)

@@ -11,6 +11,7 @@ inputs = {
         )
     )
 }
+example_parameters = {'example_parameter': 'Some string', 'example_parameter2': 0.25, 'example_parameter3': 3}
 
-response = client.request(inputs, parameters={})  # Send a request to the server
+response = client.request(inputs, parameters=example_parameters)  # Send a request to the server
 print(response)  # Print the response
