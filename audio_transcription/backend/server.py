@@ -22,7 +22,7 @@ def transcribe(inputs: FileInputs, parameters: NoParameters) -> ResponseBody:
             texts=[
                 TextResponse(
                     title=k,
-                    text=v,
+                    value=v,
                 )
                 for k, v in results.items()
             ]
