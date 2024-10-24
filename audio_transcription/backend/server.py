@@ -11,7 +11,7 @@ file_ml = FileML(example_parameters)
 
 
 @server.route("/transcribe", task_schema_func=file_ml.task_schema_func)
-def transcribe(inputs: file_ml.input_type, parameters: file_ml.parameter_type) -> ResponseBody:
+def transcribe(inputs: file_ml.InputType, parameters: file_ml.ParameterType) -> ResponseBody:
     print("Inputs:", inputs)
     print("Parameters:", parameters)
     files = [e.path for e in inputs["file_inputs"].files]
